@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo">
+	<select id="deptList" parameterType="map" resultType="map">
+ SELECT DEPTNO, DNAME, LOC, FILE_NAME, FILE_URL
+ FROM SCOTT.DEPT
+ <where>
+ <if test='deptno!=null and deptno>0'>
+ AND deptno = #{deptno}
+ </if>
+ </where>
+ <!-- ORDER BY DEPTNO desc -->
+	</select>
+	<insert id="deptInsert"
+parameterType="com.example.demo.vo.DeptVO">
+ INSERT INTO SCOTT.DEPT (
+ DEPTNO,
+ DNAME,
+ LOC
+ <if test="file_name != null">
+ ,FILE_NAME
+ </if>
+ <if test="file_url != null">
+ ,FILE_URL
+ </if>
+ )
+ VALUES(
+ #{deptno},
+ #{dname},
+ #{loc}
+ <if test="file_name != null">
+ ,#{file_name}
+ </if>
+ <if test="file_url != null">
+ ,#{file_url}
+ </if>
+ )
+	</insert>
+</mapper>
