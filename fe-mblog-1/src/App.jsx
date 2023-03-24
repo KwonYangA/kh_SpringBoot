@@ -7,6 +7,7 @@ import HomePage from './components/page/HomePage';
 import DeptPage from './components/page/DeptPage';
 import DeptDetail from './components/dept/DeptDetail';
 import RepleBoardPage from './components/page/RepleBoardPage';
+import Signup from './components/member/Signup';
 
 function App({imageUploader}) {
   return (
@@ -14,6 +15,7 @@ function App({imageUploader}) {
     <Routes>
     <Route path='/' exact={true} element={<LoginPage />}/>
     <Route path='/home' exact={true} element={<HomePage />}/>
+    <Route path='/member/signup' exact={true} element={<Signup />}/>
     <Route path='/dept/:gubun' element={<DeptPage imageUploader={imageUploader} />}/>
     <Route path='/repleboard' element={<RepleBoardPage />}/>
     <Route path='/deptdetail/:deptno' element={<DeptDetail imageUploader={imageUploader} />}/>

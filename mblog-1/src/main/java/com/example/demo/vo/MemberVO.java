@@ -10,22 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MemberVO {
-	private String mem_id = null;
-	private String mem_pw = null;
-	private String mem_name = null;
-	
-	public String getMem_id() {
-		// TODO Auto-generated method stub
-		return mem_id;
-	}
-
-	public String getMem_pw() {
-		// TODO Auto-generated method stub
-		return mem_pw;
-	}
-
-	public String getMem_name() {
-		// TODO Auto-generated method stub
-		return mem_pw;
-	}
+	private String mem_id;
+	 private String mem_pw;
+	 private String mem_name;
 }

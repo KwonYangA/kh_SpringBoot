@@ -1,5 +1,6 @@
 package com.example.demo.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,25 @@ public class MemberLogic {
 	}
 
 	public List<Map<String, Object>> memberList(Map<String, Object> pMap) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("boardList");
+		List<Map<String, Object>> mList = new ArrayList<>();
+		mList = memberDao.memberList(pMap);
+		return mList;
+	}
+
+	public int memberUpdate(Map<String, Object> pMap) {
+		logger.info("memberUpdate 호출");
+		int result = 0;
+		logger.info(pMap.toString());
+		result = memberDao.memberUpdate(pMap);
+		return result;
+	}
+	
+	public int memberDelete(Map<String, Object> pMap) {
+		logger.info("memberDelete 호출");
+		int result = 0;
+		logger.info(pMap.toString());
+		result = memberDao.memberDelete(pMap);
+		return result;
 	}
 }

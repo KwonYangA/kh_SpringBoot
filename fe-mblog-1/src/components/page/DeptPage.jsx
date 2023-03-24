@@ -116,8 +116,8 @@ const DeptPage = ({ imageUploader }) => {
   const imgChange = async (event) => {
     const uploaded = await imageUploader.upload(event.target.files[0]);
     setFiles({
-      file_name: uploaded.public_id + "." + uploaded.format,
-      file_url: uploaded.url,
+      filename: uploaded.public_id + "." + uploaded.format,
+      fileurl: uploaded.url,
     });
     //input의 이미지 객체 얻어오기 - 미리보기
     const upload = document.querySelector("#dimg");
@@ -147,8 +147,8 @@ const DeptPage = ({ imageUploader }) => {
       deptno,
       dname,
       loc,
-      file_name: files.file_name,
-      file_url: files.file_url,
+      filename: files.filename,
+      fileurl: files.fileurl,
     };
     const res = await deptInsertDB(dept);
     if (!res.data) {

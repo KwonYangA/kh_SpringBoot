@@ -21,6 +21,7 @@ export const createStore = (reducer) => {
   const getState = () => {
     return state;
   };
+  
   return {
     dispatch, // 함수 == 객체, 파라미터로 들어온 상태를 받아 가공해서 새로운 객체로 내보냄
     getState, // 함수 상태 정보를 담은 state반환해줌

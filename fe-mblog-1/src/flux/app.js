@@ -1,6 +1,7 @@
 import { decrease, increase } from "./action.js";
 import { reducer } from "./reducer.js";//work함수 -> reducer 명을 바꿈
 import { createStore } from "./redux.js";
+
 //사용-호출 - store생성하기 - index.js -리액트
 //모든 전역 state를 넣어서 관리하고 싶다
 //app.js에 있는 코드가 리액트 컴포넌트에 써야하는 코드임

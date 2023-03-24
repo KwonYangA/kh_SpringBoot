@@ -39,8 +39,8 @@ const DeptDetail = ({imageUploader}) => {
     DEPTNO: 0,
     DNAME : '',
     LOC : '',
-    FILE_NAME: '',
-    FILE_URL: '',
+    FILENAME: '',
+    FILEURL: '',
   })
   //수정화면 모달 마운트(화면에 나타나는 것) 여부 결정 - false 안보임, true 보임
   const navigate = useNavigate()
@@ -68,8 +68,8 @@ const DeptDetail = ({imageUploader}) => {
       setDept({DEPTNO: jsonDoc[0].DEPTNO,
                DNAME: jsonDoc[0].DNAME,  
                LOC: jsonDoc[0].LOC,  
-               FILE_NAME: jsonDoc[0].FILE_NAME,  
-               FILE_URL: jsonDoc[0].FILE_URL
+               FILE_NAME: jsonDoc[0].FILENAME,  
+               FILE_URL: jsonDoc[0].FILEURL
               })
     }
     asyncDB()
@@ -79,8 +79,8 @@ const DeptDetail = ({imageUploader}) => {
   }, [deptno]) //deptno가 상태가 변경될때 마다 함수가 실행 됨
 
   //이미지 파일이 없을 때
-  if(!dept.FILE_URL){
-    dept.FILE_URL="http://via.placeholder.com/200X250"
+  if(!dept.FILEURL){
+    dept.FILEURL="http://via.placeholder.com/200X250"
   }
   //부서 목록페이지로 이동
   const deptList = () => {
@@ -138,8 +138,8 @@ const DeptDetail = ({imageUploader}) => {
     const imgChange = async (event) => {
       const uploaded = await imageUploader.upload(event.target.files[0]);
       setFiles({
-        file_name: uploaded.public_id + "." + uploaded.format,
-        file_url: uploaded.url,
+        filename: uploaded.public_id + "." + uploaded.format,
+        fileurl: uploaded.url,
       });
       //input의 이미지 객체 얻어오기 - 미리보기
       const upload = document.querySelector("#dimg");
@@ -166,8 +166,8 @@ const DeptDetail = ({imageUploader}) => {
         deptno,
         dname,
         loc,
-        file_name: files.file_name,
-        file_url: files.file_url,
+        filename: files.filename,
+        fileurl: files.fileurl,
       };
       const res = await deptUpdateDB(dept);
       if (!res.data) {
@@ -196,7 +196,7 @@ const DeptDetail = ({imageUploader}) => {
         <Card style={{width:'58rem'}}>
             <Card.Body>
               <Card.Img style={{width:'250px'}} 
-              src={`${dept.FILE_URL}`} alt="Card image"/>
+              src={`${dept.FILEURL}`} alt="Card image"/>
               <DivDeptBody>
                 <Card.Title>{dept.DNAME}</Card.Title>
                 <Card.Text>{dept.LOC}</Card.Text>

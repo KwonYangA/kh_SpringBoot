@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo">
-<select id="getToday" resultType="string" parameterType="string">
-SELECT to_char(sysdate, 'YYYY-MM-DD') FROM dual
-</select>
-<select id="login" parameterType="map" resultType="string">
-select mem_name from book_member
-<where>
-<if test='mem_id!=null and mem_id.length()>0'>
-AND mem_id = #{mem_id}
-</if>
-<if test='mem_pw!=null and mem_pw.length()>0'>
-AND mem_pw = #{mem_pw}
-</if>
-</where>
-</select>
-<select id="memberList" parameterType="map" resultType="map">
-select mem_id, mem_name from book_member
-<where>
-<if test='mem_id!=null and mem_id.length()>0'>
-AND mem_id = #{mem_id}
-</if>
-</where>
-</select>
+	<select id="getToday" resultType="string" parameterType="string">
+		SELECT to_char(sysdate, 'YYYY-MM-DD') FROM dual
+	</select>
+	<select id="login" parameterType="map" resultType="string">
+		SELECT MEM_NAME FROM MEMBER230324
+		<where>
+			<if test='mem_id!=null and mem_id.length()>0'>
+				AND mem_id = #{mem_id}
+			</if>
+			<if test='mem_pw!=null and mem_pw.length()>0'>
+				AND mem_pw = #{mem_pw}
+			</if>
+		</where>
+	</select>
+
+	<select id="memberList" parameterType="map" resultType="map">
+		SELECT MEM_UID, MEM_NAME FROM MEMBER230324
+		<where>
+			<if test='mem_uid!=null and mem_uid.length()>0'>
+				AND MEM_UID = #{mem_uid}
+			</if>
+		</where>
+	</select>
+	<insert id="memberInsert" parameterType="map">
+		INSERT INTO
+		MBLOG.MEMBER230324 (
+		MEM_NO ,
+		MEM_UID ,
+		MEM_PW ,
+		MEM_NAME ,
+		MEM_NICKNAME ,
+		MEM_EMAIL ,
+		MEM_TEL ,
+		MEM_GENDER ,
+		MEM_BIRTHDAY
+		)
+		VALUES(
+		SEQ_MEMBER_NO.NEXTVAL,
+		#{mem_uid},
+		#{mem_pw},
+		#{mem_name},
+		#{mem_nickname},
+		#{mem_email},
+		#{mem_tel},
+		#{mem_gender},
+		#{mem_birthday}
+		)
+	</insert>
 </mapper>
