@@ -6,16 +6,31 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import ImageUploader from "./service/imageUploader";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import { legacy_createStore } from "redux";
+import rootReducer from "./redux/rootReducer";
+import firebaseApp from "./service/firebase";
+import AuthLogic from "./service/authLogic";
+import { setAuth } from "./redux/userAuth/action";
+//리덕스 적용
+const store = legacy_createStore(rootReducer);
+//AuthLogic객체 생성하기
+const authLogic = new AuthLogic(firebaseApp);
+//store에 있는 초기 상태정보 출력하기
+store.dispatch(
+  setAuth(authLogic.getUserAuth(), authLogic.getGoogleAuthProvider())
+);
+console.log(store.getState());
 
-//리덕스 추가 - store 생성
-//createStore호출
-
+//이미지업로드객체생성
 const imageUploader = new ImageUploader();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <BrowserRouter>
-      <App imageUploader={imageUploader} />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App imageUploader={imageUploader} />
+      </BrowserRouter>
+    </Provider>
   </>
 );

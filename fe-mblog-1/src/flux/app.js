@@ -19,6 +19,7 @@ store.subscribe(function () {
   //getState()는 useSelector(state => state.userAuth) - 상태값을 store에서 읽어들일 때 사용함
 });
 
+//해당컴포넌트에서 state값을 가져오기 - userSelector훅
 store.dispatch(increase()); //시그널 주기 - action - 리액트 useDispatcher
 store.dispatch(increase());
 store.dispatch(decrease());

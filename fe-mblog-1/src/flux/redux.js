@@ -1,3 +1,5 @@
+
+//순서대로 퍼리할 필요가 있음 - 커링함수 패턴 적용
 export const actionCreator = (type) => (payload) => ({
   //첫번째 파라미터가 두번째 파라미터에 의존관계가 있다.
   type,
