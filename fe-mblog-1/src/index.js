@@ -29,7 +29,7 @@ root.render(
   <>
     <Provider store={store}>
       <BrowserRouter>
-        <App imageUploader={imageUploader} />
+        <App authLogic={authLogic} imageUploader={imageUploader} />
       </BrowserRouter>
     </Provider>
   </>

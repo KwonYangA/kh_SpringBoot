@@ -33,13 +33,13 @@ export const memberUpdateDB = (member) => {
   });
 };
 
-export const memberListDB = (member) => {
+export const memberListDB = (params) => {
   return new Promise((resolve, reject) => {
     try {
       const response = axios({
         method: "get", //@RequestBody
         url: process.env.REACT_APP_SPRING_IP + "member/memberList",
-        data: member, //post방식으로 전송시 반드시 data속성 파라미터로 할것
+        params: params, //post방식으로 전송시 반드시 data속성 파라미터로 할것
       });
       resolve(response);
       console.log(response.data);
@@ -105,7 +105,7 @@ export const deptListDB = (dept) => {
       const response = axios({
         method: "get",
         url: process.env.REACT_APP_SPRING_IP + "dept/deptList",
-        params: dept, //쿼리스트링은 header에 담김 - get방식
+        dept: dept, //쿼리스트링은 header에 담김 - get방식
       });
       resolve(response);
     } catch (error) {

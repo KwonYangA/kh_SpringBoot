@@ -22,6 +22,15 @@
 			<if test='mem_uid!=null and mem_uid.length()>0'>
 				AND MEM_UID = #{mem_uid}
 			</if>
+<!--
+	<input type=text id="mem_nickname" value=""/>
+	항상 무조건 빈 문자열이다. 품전송하면 무조건 빈문자열이 있는 상태이다.
+	아무것도 입력하지 않아도 null에 걸리지 않는다.
+	문자열이 > 0 까지를 비교해야 잡아낼 수 있다.
+-->			
+			<if test='MEM_NICKNAME!=null and MEM_NICKNAME.length()>0'>
+				AND MEM_NICKNAME = #{MEM_NICKNAME}
+			</if>
 		</where>
 	</select>
 	<insert id="memberInsert" parameterType="map">
@@ -35,7 +44,10 @@
 		MEM_EMAIL ,
 		MEM_TEL ,
 		MEM_GENDER ,
-		MEM_BIRTHDAY
+		MEM_BIRTHDAY,
+		MEM_ZIPCODE,
+		MEM_ADDR,
+		MEM_ADDR_DTL
 		)
 		VALUES(
 		SEQ_MEMBER_NO.NEXTVAL,
@@ -46,7 +58,10 @@
 		#{mem_email},
 		#{mem_tel},
 		#{mem_gender},
-		#{mem_birthday}
+		#{mem_birthday},
+		#{mem_zipcode},
+		#{mem_addr},
+		#{mem_addr_dtl}
 		)
 	</insert>
 </mapper>

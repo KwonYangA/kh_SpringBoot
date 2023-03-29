@@ -5,6 +5,9 @@ import { ContainerDiv, FormDiv, HeaderDiv } from "../../styles/FormStyle";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 const HomePage = () => {
+  const member = window.localStorage.getItem('member');
+  const jsonDoc = JSON.parse(member);
+  console.log(jsonDoc.mem_id + ', ' + jsonDoc.mem_pw);
   const navigate = useNavigate()
   const handleLogin = () =>{
     console.log("로그인")
