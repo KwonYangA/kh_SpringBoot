@@ -35,7 +35,7 @@ public class MemberLogic {
 	}
 
 	public List<Map<String, Object>> memberList(Map<String, Object> pMap) {
-		logger.info("boardList");
+		logger.info("memberlist 호출");
 		List<Map<String, Object>> mList = new ArrayList<>();
 		mList = memberDao.memberList(pMap);
 		return mList;

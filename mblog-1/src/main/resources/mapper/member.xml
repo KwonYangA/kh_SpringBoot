@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="memberList" parameterType="map" resultType="map">
-		SELECT MEM_UID, MEM_NAME FROM MEMBER230324
+		SELECT MEM_UID, MEM_NAME, MEM_EMAIL FROM MEMBER230324
 		<where>
 			<if test='mem_uid!=null and mem_uid.length()>0'>
 				AND MEM_UID = #{mem_uid}
@@ -30,6 +30,15 @@
 -->			
 			<if test='MEM_NICKNAME!=null and MEM_NICKNAME.length()>0'>
 				AND MEM_NICKNAME = #{MEM_NICKNAME}
+			</if>
+			<if test='mem_name!=null and mem_name.length()>0'>
+				AND MEM_NAME = #{mem_name}
+			</if>
+			<if test='mem_tel!=null and mem_tel.length()>0'>
+				AND MEM_TEL = #{mem_tel}
+			</if>
+			<if test='mem_email!=null and mem_email.length()>0'>
+				AND MEM_EMAIL = #{mem_email}
 			</if>
 		</where>
 	</select>
@@ -47,21 +56,51 @@
 		MEM_BIRTHDAY,
 		MEM_ZIPCODE,
 		MEM_ADDR,
-		MEM_ADDR_DTL
+		MEM_ADDR_DTL,
+		MEM_AUTH,
+		MEM_STATUS
 		)
 		VALUES(
 		SEQ_MEMBER_NO.NEXTVAL,
-		#{mem_uid},
-		#{mem_pw},
-		#{mem_name},
-		#{mem_nickname},
-		#{mem_email},
-		#{mem_tel},
-		#{mem_gender},
-		#{mem_birthday},
-		#{mem_zipcode},
-		#{mem_addr},
-		#{mem_addr_dtl}
+		<if test='MEM_UID!=null'>
+		#{MEM_UID},
+		</if>*
+		<if test='MEM_PW!=null'>
+		#{MEM_PW},
+		</if>
+		<if test='MEM_NAME!=null'>
+		#{MEM_NAME},
+		</if>
+		<if test='MEM_NICKNAME!=null'>
+		#{MEM_NICKNAME},
+		</if>
+		<if test='MEM_EMAIL!=null'>
+		#{MEM_EMAIL},
+		</if>
+		<if test='MEM_TEL!=null'>
+		#{MEM_TEL},
+		</if>
+		<if test='MEM_GENDER!=null'>
+		#{MEM_GENDER},
+		</if>
+		<if test='MEM_BIRTHDAY!=null'>
+		#{MEM_BIRTHDAY},
+		</if>
+		<if test='MEM_ZIPCODE!=null'>
+		#{MEM_ZIPCODE},
+		</if>
+		<if test='MEM_ADDR!=null'>
+		#{MEM_ADDR},
+		</if>
+		<if test='MEM_ADDR_DTL!=null'>
+		#{MEM_ADDR_DTL},
+		</if>
+		<if test='MEM_AUTH!=null'>
+		#{MEM_AUTH},
+		</if>
+		<if test='MEM_STATUS!=null'>
+		#{MEM_STATUS}
+		</if>		
 		)
 	</insert>
 </mapper>
