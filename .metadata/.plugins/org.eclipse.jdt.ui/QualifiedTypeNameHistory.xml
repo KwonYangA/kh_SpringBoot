@@ -14,8 +14,11 @@
     <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="org.slf4j.Logger"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
-    <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
-    <fullyQualifiedTypeName name="org.apache.logging.log4j.LogManager"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.mybatis.spring.SqlSessionTemplate"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="javax.servlet.ServletOutputStream"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.LogManager"/>
 </qualifiedTypeNameHistroy>

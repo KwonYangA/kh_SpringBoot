@@ -18,14 +18,17 @@ import { memberListDB } from './service/dbLogic';
 import EmailVerifiedPage from './components/auth/EmailVerifiedPage';
 import FindEmailPage from './components/auth/FindEmailPage';
 import ResetPwdPage from './components/auth/ResetPwdPage';
+import RepleBoardWriteForm from './components/repleboard/RepleBoardWriteForm';
+import RepleBoardDetail from './components/repleboard/RepleBoardDetail';
 
 function App({ authLogic, imageUploader}) {
   const dispatch = useDispatch()
+  //화면을 전환시킬 때 - window.location.href
   const navigate = useNavigate()
   const ssg = sessionStorage;
   const toastStatus = useSelector(state=>state.toastStatus)
   useEffect(()=>{
-    const asyncDB = async () => {
+    const asyncDB = async () => { 
       const auth = authLogic.getUserAuth();
       const ssg = sessionStorage;
       //현재 인증된 사용자정보를 가져온다.
@@ -44,11 +47,12 @@ function App({ authLogic, imageUploader}) {
           // 1)0이거나 2)[{mem_uid...}]
           const temp = JSON.stringify(res.data);
           const jsonDoc = JSON.parse(temp);
+          ssg.setItem("name", jsonDoc[0].MEM_NAME);
           ssg.setItem("nickname", jsonDoc[0].MEM_NICKNAME);
           ssg.setItem("status", jsonDoc[0].MEM_STATUS);
           ssg.setItem("auth", jsonDoc[0].MEM_AUTH);
           ssg.setItem("no", jsonDoc[0].MEM_NO);
-          navigate("/");
+         // navigate("/");
           return; //랜더링이 종료됨
         }
         //구글계정로그인을 했지만 false일 때
@@ -87,7 +91,9 @@ function App({ authLogic, imageUploader}) {
       <Route path='/auth/findEmail' exact={true} element={<FindEmailPage />}/>
       <Route path='/auth/resetPwd' exact={true} element={<ResetPwdPage />} authLogic={authLogic} />
       <Route path='/dept/:gubun' element={<DeptPage imageUploader={imageUploader} />}/>
-      <Route path='/repleboard' element={<RepleBoardPage />}/>
+      <Route path='/reple/board' element={<RepleBoardPage />} />
+      <Route path='/reple/boarddetail/*' element={<RepleBoardDetail />} />
+      <Route path='/reple/boardwrite' element={<RepleBoardWriteForm />} />
       <Route path='/deptdetail/:deptno' element={<DeptDetail imageUploader={imageUploader} />}/>
       <Route path='/auth/kakao/callback' exact={true} element={<KakaoRedirectHandler />}/>
       <Route path='/member' exact={true} element={<MemberPage imageUploader={imageUploader}/>}/>
