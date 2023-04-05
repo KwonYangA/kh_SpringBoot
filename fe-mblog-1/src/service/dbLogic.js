@@ -7,7 +7,7 @@ export const qnaListDB = (board) => {
       const response = axios({
         method: "get", //@RequestBody
         url: process.env.REACT_APP_SPRING_IP + "reple/qnaList",
-        params: board, //post방식으로 전송시 반드시 data속성 파라미터로 할것
+        params: board, //post방식으로 전송시 반드시 data속성 파라미터로 할것 @RequestParams
       });
       resolve(response);
       console.log(response.data);
@@ -18,6 +18,7 @@ export const qnaListDB = (board) => {
 };
 
 export const qnaInsertDB = (board) => {
+  console.log(board); //fileNames =['man1.png',어쩌고 저쩌고 ~ ]
   return new Promise((resolve, reject) => {
     console.log(board);
     try {
@@ -33,6 +34,64 @@ export const qnaInsertDB = (board) => {
     }
   });
 };
+
+export const qnaUpdatetDB = (board) => {
+  //대소문자 구분 어떻게 할 것인가? 파라미터는 소문자로
+  //리턴 값은 대문자로
+  //아니면 둘다 대문자로 할까?
+  console.log(board); //사용자가 입련한 값 확인하기
+  return new Promise((resolve, reject) => {
+    console.log(board);
+    try {
+      const response = axios({
+        method: "post", //@RequestBody
+        url: process.env.REACT_APP_SPRING_IP + "reple/qnaUpdate",
+        data: board, //post방식으로 전송시 반드시 data속성 파라미터로 할것
+      });
+      resolve(response);
+      console.log(response.data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const qnaDetailDB = (board) => {
+  console.log(board);
+  return new Promise((resolve, reject) => {
+    try {
+      //axios - 비동기 요청 처리 ajax - fetch(브라우저, 클라이언트사이드) - axios(NodeJS, 서버사이드)
+      const response = axios({
+        method: "get", //@RequestBody
+        url: process.env.REACT_APP_SPRING_IP + "reple/qnaDetail",
+        params: board, //post방식으로 전송시 반드시 data속성 파라미터로 할것 @RequestParams
+      });
+      resolve(response);
+      console.log(response.data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const qnaDeleteDB = (board) => {
+  console.log(board);
+  return new Promise((resolve, reject) => {
+    console.log(board);
+    try {
+      const response = axios({
+        method: "get", //@RequestBody
+        url: process.env.REACT_APP_SPRING_IP + "reple/qnaDelete",
+        params: board, //post방식으로 전송시 반드시 data속성 파라미터로 할것
+      });
+      resolve(response);
+      console.log(response.data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const uploadImageDB = (file) => {
   console.log(file);
   return new Promise((resolve, reject) => {
@@ -45,7 +104,7 @@ export const uploadImageDB = (file) => {
         },
         processData: false,
         contentType: false,
-        data: file,
+        data: file, // 스프링부트와 연동시 @Requestbody 사용
       });
       resolve(response);
     } catch (error) {
@@ -73,6 +132,7 @@ export const uploadFileDB = (file) => {
     }
   });
 };
+
 export const memberInsertDB = (member) => {
   return new Promise((resolve, reject) => {
     console.log(member);
@@ -178,7 +238,7 @@ export const deptListDB = (dept) => {
       const response = axios({
         method: "get",
         url: process.env.REACT_APP_SPRING_IP + "dept/deptList",
-        dept: dept, //쿼리스트링은 header에 담김 - get방식
+        data: dept, //쿼리스트링은 header에 담김 - get방식
       });
       resolve(response);
     } catch (error) {

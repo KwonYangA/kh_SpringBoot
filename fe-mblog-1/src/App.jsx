@@ -1,34 +1,36 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import LoginPage from './components/auth/LoginPage';
-import KakaoRedirectHandler from './components/kakao/KakaoRedirectHandler';
-import Profile from './components/kakao/Profile';
-import MemberPage from './components/page/MemberPage';
-import HomePage from './components/page/HomePage';
-import DeptPage from './components/page/DeptPage';
-import DeptDetail from './components/dept/DeptDetail';
-import RepleBoardPage from './components/page/RepleBoardPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { setToastMsg } from './redux/toastStatus/action';
-import Toast from './components/Toast';
-import SignupPage from './components/auth/SignupPage';
-import KhLoginPage from './components/auth/KHLoginPage';
-import { onAuthChange } from './service/authLogic';
-import { memberListDB } from './service/dbLogic';
-import EmailVerifiedPage from './components/auth/EmailVerifiedPage';
-import FindEmailPage from './components/auth/FindEmailPage';
-import ResetPwdPage from './components/auth/ResetPwdPage';
-import RepleBoardWriteForm from './components/repleboard/RepleBoardWriteForm';
-import RepleBoardDetail from './components/repleboard/RepleBoardDetail';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import KakaoRedirectHandler from "./components/kakao/KakaoRedirectHandler";
+import Profile from "./components/kakao/Profile";
+import MemberPage from "./components/page/MemberPage";
+import HomePage from "./components/page/HomePage";
+import DeptPage from "./components/page/DeptPage";
+import DeptDetail from "./components/dept/DeptDetail";
+import RepleBoardPage from "./components/page/RepleBoardPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import Toast from "./components/Toast";
+import SignupPage from "./components/auth/SignupPage";
+import KhLoginPage from "./components/auth/KHLoginPage";
+import { onAuthChange } from "./service/authLogic";
+import { memberListDB } from "./service/dbLogic";
+import EmailVerifiedPage from "./components/auth/EmailVerifiedPage";
+import FindEmailPage from "./components/auth/FindEmailPage";
+import ResetPwdPage from "./components/auth/ResetPwdPage";
+import RepleBoardWriteForm from "./components/repleboard/RepleBoardWriteForm";
+import RepleBoardDetail from "./components/repleboard/RepleBoardDetail";
+import KhQnaWriteForm from "./components/repleboard/KhQnaWriteForm";
+import KhQnADetailPage from "./components/repleboard/KhQnADetailPage";
+import KhQnAListPage from "./components/repleboard/KhQnAListPage";
+import KhQnAUpdatePage from "./components/repleboard/KhQnAUpdatePage";
 
-function App({ authLogic, imageUploader}) {
-  const dispatch = useDispatch()
+function App({ authLogic, imageUploader }) {
+  const dispatch = useDispatch();
   //화면을 전환시킬 때 - window.location.href
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const ssg = sessionStorage;
-  const toastStatus = useSelector(state=>state.toastStatus)
-  useEffect(()=>{
-    const asyncDB = async () => { 
+  const toastStatus = useSelector((state) => state.toastStatus);
+  useEffect(() => {
+    const asyncDB = async () => {
       const auth = authLogic.getUserAuth();
       const ssg = sessionStorage;
       //현재 인증된 사용자정보를 가져온다.
@@ -52,12 +54,12 @@ function App({ authLogic, imageUploader}) {
           ssg.setItem("status", jsonDoc[0].MEM_STATUS);
           ssg.setItem("auth", jsonDoc[0].MEM_AUTH);
           ssg.setItem("no", jsonDoc[0].MEM_NO);
-         // navigate("/");
+          // navigate("/");
           return; //랜더링이 종료됨
         }
         //구글계정로그인을 했지만 false일 때
         if (!user.emailVerified) {
-          navigate('./auth/emailVerified')
+          navigate("./auth/emailVerified");
         }
         //오라클 서버의 회원집합에 uid가 존재하지 않으면
         else {
@@ -76,30 +78,98 @@ function App({ authLogic, imageUploader}) {
         }
       } //end of else
     };
-    asyncDB()
+    asyncDB();
   }, [dispatch]);
 
   return (
     <>
-    <div style={{height:'100vh'}}>
-    {toastStatus.status && <Toast />}
-    <Routes>
-      <Route path='/login' exact={true} element={<KhLoginPage authLogic={authLogic} />}/>
-      <Route path='/' exact={true} element={<HomePage />}/>
-      <Route path='/auth/signup' exact={true} element={<SignupPage authLogic={authLogic} />}/>
-      <Route path='/auth/emailVerified' exact={true} element={<EmailVerifiedPage authLogic={authLogic} />}/>
-      <Route path='/auth/findEmail' exact={true} element={<FindEmailPage />}/>
-      <Route path='/auth/resetPwd' exact={true} element={<ResetPwdPage />} authLogic={authLogic} />
-      <Route path='/dept/:gubun' element={<DeptPage imageUploader={imageUploader} />}/>
-      <Route path='/reple/board' element={<RepleBoardPage />} />
-      <Route path='/reple/boarddetail/*' element={<RepleBoardDetail />} />
-      <Route path='/reple/boardwrite' element={<RepleBoardWriteForm />} />
-      <Route path='/deptdetail/:deptno' element={<DeptDetail imageUploader={imageUploader} />}/>
-      <Route path='/auth/kakao/callback' exact={true} element={<KakaoRedirectHandler />}/>
-      <Route path='/member' exact={true} element={<MemberPage imageUploader={imageUploader}/>}/>
-      <Route path='/profile' exact={true} element={<Profile />}/>
-    </Routes>
-    </div>
+      <div style={{ height: "100vh" }}>
+        {toastStatus.status && <Toast />}
+        <Routes>
+          <Route
+            path="/login"
+            exact={true}
+            element={<KhLoginPage authLogic={authLogic} />}
+          />
+          <Route
+            path="/"
+            exact={true}
+            element={<HomePage authLogic={authLogic} />}
+          />
+          <Route
+            path="/auth/signup"
+            exact={true}
+            element={<SignupPage authLogic={authLogic} />}
+          />
+          <Route
+            path="/auth/emailVerified"
+            exact={true}
+            element={<EmailVerifiedPage authLogic={authLogic} />}
+          />
+          <Route
+            path="/auth/findEmail"
+            exact={true}
+            element={<FindEmailPage />}
+          />
+          <Route
+            path="/auth/resetPwd"
+            exact={true}
+            element={<ResetPwdPage />}
+            authLogic={authLogic}
+          />
+          <Route
+            path="/dept/:gubun"
+            element={<DeptPage imageUploader={imageUploader} />}
+          />
+          <Route
+            path="/reple/board"
+            exact={true}
+            element={<RepleBoardPage />}
+          />
+          <Route
+            path="/reple/boarddetail/*"
+            element={<RepleBoardDetail authLogic={authLogic} />}
+          />
+          <Route
+            path="/reple/boardwrite"
+            exact={true}
+            element={<RepleBoardWriteForm authLogic={authLogic} />}
+          />
+          <Route
+            path="/deptdetail/:deptno"
+            element={<DeptDetail imageUploader={imageUploader} />}
+          />
+          <Route
+            path="/auth/kakao/callback"
+            exact={true}
+            element={<KakaoRedirectHandler />}
+          />
+          <Route
+            path="/member"
+            exact={true}
+            element={<MemberPage imageUploader={imageUploader} />}
+          />
+          <Route path="/profile" exact={true} element={<Profile />} />
+          <Route
+            path="/qna/list"
+            exact={true}
+            element={<KhQnAListPage authLogic={authLogic} />}
+          />
+          <Route
+            path="/qna/write/*"
+            exact={true}
+            element={<KhQnaWriteForm authLogic={authLogic} />}
+          />
+          <Route
+            path="/qna/detail/*"
+            element={<KhQnADetailPage authLogic={authLogic} />}
+          />
+          <Route
+            path="/qna/update/:bno"
+            element={<KhQnAUpdatePage authLogic={authLogic} />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }

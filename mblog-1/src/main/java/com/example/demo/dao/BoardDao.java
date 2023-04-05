@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 //@Repository
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Service;
 public class BoardDao {
 	Logger logger = LoggerFactory.getLogger(BoardDao.class);
 
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+	
 	public List<Map<String, Object>> boardList(Map<String, Object> pMap) {
 		logger.info("boardList");
 		List<Map<String, Object>> bList = null;
@@ -33,6 +38,13 @@ public class BoardDao {
 			bList.add(rMap);
 		}
 		return bList;
+	}
+	
+	public int boardInsert(Map<String, Object> pMap) {
+		logger.info("boardInsert호출");
+		int result = 0;
+		result = sqlSessionTemplate.update("boardInsert", pMap);
+		return result;
 	}
 
 }
