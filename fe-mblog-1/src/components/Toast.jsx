@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { setToastFalse } from '../redux/toastStatus/action';
-import './toast.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { setToastFalse } from "../redux/toastStatus/action";
+import "./toast.css";
 
 const ToastDiv = styled.div`
   position: fixed;
@@ -20,27 +20,21 @@ const ToastDiv = styled.div`
   color: #ffffff;
   border-radius: 4px;
   border: 1px solid #000000;
-`
+`;
 
 const Toast = () => {
-
-  const toastStatus = useSelector(state => state.toastStatus);
+  const toastStatus = useSelector((state) => state.toastStatus);
   const dispatch = useDispatch();
 
-  
   useEffect(() => {
     if (toastStatus.status) {
       setTimeout(() => {
-        dispatch(setToastFalse()); 
-      }, 1500)
+        dispatch(setToastFalse());
+      }, 1500);
     }
-
   }, [toastStatus.status, dispatch]);
-  
 
-  return (
-    <ToastDiv>{JSON.stringify(toastStatus.msg)}</ToastDiv>
-  );
+  return <ToastDiv>{JSON.stringify(toastStatus.msg)}</ToastDiv>;
 };
 
 export default Toast;

@@ -119,7 +119,9 @@ function App({ authLogic, imageUploader }) {
           />
           <Route
             path="/dept/:gubun"
-            element={<DeptPage imageUploader={imageUploader} />}
+            element={
+              <DeptPage imageUploader={imageUploader} authLogic={authLogic} />
+            }
           />
           <Route
             path="/reple/board"
@@ -137,7 +139,9 @@ function App({ authLogic, imageUploader }) {
           />
           <Route
             path="/deptdetail/:deptno"
-            element={<DeptDetail imageUploader={imageUploader} />}
+            element={
+              <DeptDetail imageUploader={imageUploader} authLogic={authLogic} />
+            }
           />
           <Route
             path="/auth/kakao/callback"
