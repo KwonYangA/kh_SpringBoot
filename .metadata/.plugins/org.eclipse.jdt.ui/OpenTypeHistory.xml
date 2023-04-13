@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=kh-security-2/C:\/Users\/user1\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.data\/spring-data-jpa\/2.7.10\/dfb83414eb6a8609bd71dc3ddae82e973698a091\/spring-data-jpa-2.7.10.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1681258978735"/>
+    <typeInfo handle="=kh-security-2/C:\/Users\/user1\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.security\/spring-security-core\/5.7.7\/4502c4ac0d63b12fa5162e622f1b5ea2483f1b6b\/spring-security-core-5.7.7.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.security.core.userdetails(UserDetails.class[UserDetails" modifiers="1537" timestamp="1681114420477"/>
+    <typeInfo handle="=kh-security-2/C:\/Users\/user1\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.security\/spring-security-core\/5.7.7\/4502c4ac0d63b12fa5162e622f1b5ea2483f1b6b\/spring-security-core-5.7.7.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.security.core.userdetails(UserDetailsService.class[UserDetailsService" modifiers="1537" timestamp="1681114420477"/>
+</typeInfoHistroy>
